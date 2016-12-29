@@ -29,30 +29,26 @@ class Booking extends CI_Controller {
 		$this->load->view('booking');
 	}
 
-	// Buat fungsi loginnya
-	public function tampil_kelas() {
+	// Buat fungsi set ke tampilannya
+	public function setContent() {
 
 		//mau ngirim array data ke model
 		$data = array(
-			'username' => $this->input->post('username'),
-			'password' => $this->input->post('password')
+			'datebook' => $this->input->post('datebook'),
+			'from' => $this->input->post('from'),
+			'to' => $this->input->post('to')
 			);
 
-		$result = $this->login_model->login($data);
+		//kirim $data ke booking_model fungsi cek_ruang
+		$result = $this->booking_model->cek_ruang($data);
 
 		if ($result == TRUE) 
 		{
-			$username = $this->input->post('username');
-
-			$_SESSION['logged_in'] = $username;
-
-			$this->load->view('booking');
-			echo "<script>window.location = '../../index.php/booking'</script>";
+			echo "<script>window.location = '../booking'</script>";
 		} 
 		else 
 		{
-			$_SESSION['invalid'] = "Invalid username or password";
-			echo "<script>window.location = '../..'</script>";
+			echo "<script>window.location = '../booking'</script>";
 		}
 
 	}

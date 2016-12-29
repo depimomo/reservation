@@ -56,7 +56,7 @@
 				<div class="barbar" style="margin: 15px 10px 20px 0px"></div>
 
 				<!-- Form check availability -->
-				<form method="POST" action="">
+				<form method="POST" action="<?php echo base_url();?>index.php/Booking/setContent">
 
 					<!-- Tanggal -->
 					<div class="row" style="padding:14px;padding-top:5px;padding-bottom:0px">
@@ -66,7 +66,7 @@
 					</div>
 					<div class="row" style="padding-left:14px;padding-top:0px;padding-bottom:15px;">
 						<div id="datetimepicker" class="input-append date" style="height:20px">
-							<input data-format="dd/MM/yyyy" type="text" name="datebook"/>
+							<input data-format="dd/MM/yyyy" type="text" name="datebook" id="datebook"/>
 							<span class="add-on">
 								<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
 							</span>
@@ -91,8 +91,8 @@
 								<h4 class="konten"> To </h4>
 								<select class="form-control" id="jamakhir" name="to" style="width:100%">
 									<option value ="10"> 10.00 </option>
-									<option value ="23"> 13.00 </option>
-									<option value ="15"> 15.00</option>
+									<option value ="12"> 12.00 </option>
+									<option value ="15"> 15.00 </option>
 									<option value ="17"> 17.00 </option>
 								</select>
 							</div>
@@ -292,6 +292,33 @@
 	});
 
 </script>
+
+<?php
+
+	//liat session booked classnya udah ada belom, kalo ada lakukan hal berikut
+
+	if(isset($_SESSION['booked_class']))
+	{
+		//ngambil array booked dari session
+		$booked = $_SESSION['booked_class'];
+
+		echo "<script>";
+
+		//matiin kelas yang udah ke book
+		foreach ($booked as $row) {
+
+			echo "document.getElementById('".$row."').className = document.getElementById('".$row."').className.replace ( /(?:^|\s)aktif(?!\S)/g , ' gaaktif' );";
+		}
+
+		echo "</script>";
+	}
+
+	if(isset($_SESSION['datebook']))
+	{
+		echo "<script> document.getElementById('datebook').value ='".$_SESSION['datebook']."'</script>";
+	}
+
+?>
 
 </body>
 </html>
