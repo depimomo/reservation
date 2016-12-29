@@ -196,7 +196,7 @@
 								<th> Book Room </th>
 							</tr>
 						</thead>
-						<tbody class="warnatbl">
+						<tbody class="warnatbl" id="list_avail">
 							<tr class="temp">
 								<td></td>
 								<td></td>
@@ -291,23 +291,33 @@
 		pickTime: false
 	});
 
+
+	function SelectFrom(valueToSelect)
+	{    
+	    var element = document.getElementById('jammulai');
+	    element.value = valueToSelect;
+	}
+
+	function SelectTo(valueToSelect)
+	{    
+	    var element = document.getElementById('jamakhir');
+	    element.value = valueToSelect;
+	}
+
 </script>
 
 <?php
 
 	//liat session booked classnya udah ada belom, kalo ada lakukan hal berikut
 
-	if(isset($_SESSION['booked_class']))
+	if(isset($booked_class))
 	{
-		//ngambil array booked dari session
-		$booked = $_SESSION['booked_class'];
-
 		echo "<script>";
 
 		//matiin kelas yang udah ke book
-		foreach ($booked as $row) {
+		foreach ($booked_class as $row) {
 
-			echo "document.getElementById('".$row."').className = document.getElementById('".$row."').className.replace ( /(?:^|\s)aktif(?!\S)/g , ' gaaktif' );";
+			echo "document.getElementById('".$row['class_id']."').className = document.getElementById('".$row['class_id']."').className.replace ( /(?:^|\s)aktif(?!\S)/g , ' gaaktif' );";
 		}
 
 		echo "</script>";
@@ -316,6 +326,37 @@
 	if(isset($_SESSION['datebook']))
 	{
 		echo "<script> document.getElementById('datebook').value ='".$_SESSION['datebook']."'</script>";
+	}
+
+	if(isset($_SESSION['from']) && isset($_SESSION['to']))
+	{
+		echo "<script>SelectFrom('".$_SESSION['from']."');SelectTo('".$_SESSION['to']."');</script>";
+	}
+
+	if(isset($unbooked_class))
+	{
+		echo "<script>";
+		echo "$('.temp').remove();";
+
+		$mycode = "";
+
+		$n = 0;
+
+		//tampilin kelas available ke tabel
+		foreach ($unbooked_class as $row) {
+
+			$n++;
+
+			$mycode = $mycode."<tr class='temp'><td>".$n."</td><td>".$row['id']."</td><td>".$row['nama_kelas']."</td><td><button type='button' class='btn btn-primary' id='".$row['id']."'><span class='glyphicon glyphicon-plus'></span> Book Now </button></td></tr>";
+		}
+
+		//echo $mycode;
+
+		echo 'var isi = "'.$mycode.'";';
+
+		echo "$('#list_avail').append(isi);";
+
+		echo "</script>";
 	}
 
 ?>

@@ -2,7 +2,6 @@
 
 Class Booking_Model extends CI_Model {
 
-
 	//Tarik data sesuai waktu yang dimau
 	public function cek_ruang($data) {
 
@@ -11,7 +10,10 @@ Class Booking_Model extends CI_Model {
 		$_SESSION['datebook'] = $datebook;
 
 		$from = $data['from'];
+		$_SESSION['from'] = $from;
+
 		$to = $data['to'];
+		$_SESSION['to'] = $to;
 
 		//cek from sama to nya itu sebenernya berapa slot, 
 		//karena satu slot 2 jam kita liat dia selisihnya 2 ga
@@ -79,27 +81,23 @@ Class Booking_Model extends CI_Model {
 
 		$query = $this->db->get();
 
-		if ($query->num_rows() > 0) 
-		{
-			//di sini kita udah dapet daftar kelas yang kebook di jam segitu
-			//simpen di array
+		//sekarang udah pake cara pinter, jadi kirimnya langsung dalam bentuk array aja
+		return $query->result_array();
 
-			foreach ($query->result() as $row) 
-			{
-				$class[] = $row->class_id;
-			}
+	}
 
-			//masukin session for simplicity
+	public function ruang_tersedia($data)
+	{
+		$condition2 = "id NOT IN('". implode("', '", $data) . "')";
 
-			$_SESSION['booked_class'] = $class;
+		$this->db->select('*');
+		$this->db->from('kelas');
+		$this->db->where($condition2);
 
-			return true;
-					
-		} 
-		else 
-		{
-			return false;
-		}
+		$query = $this->db->get();
+
+		//sekarang udah pake cara pinter, jadi kirimnya langsung dalam bentuk array aja
+		return $query->result_array();
 	}
 }
 
