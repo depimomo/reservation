@@ -16,16 +16,43 @@
 	<script src="<?php echo base_url();?>assets/js/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url();?>assets/js/dataTables.bootstrap.js"></script>
 
-	<!-- buat datetime piker-->
+	<!-- buat datetime piker
 	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" media="screen"
 	href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+	
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
 
 	<!--dari eli-->
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/pembantu.css">
+			<style>
+	.kolomkiri, .kolomtengah, .kolomkanan {
+    float: none;
+    padding: 20px;
+    vertical-align: top;
+	display: table-cell;
+    }
+	.container-fluid {
+    display: table;
+	margin:0px;
+	
+	}
+	html,body{
+		margin:0px;
+	}
+	</style>
 
 </head>
 
@@ -34,10 +61,10 @@
 	<?php //if(isset($_SESSION['logged_in'])) echo $_SESSION['logged_in'];?>
 
 	<div class="hidden-xs">
-		<div class="container-fluid" style="margin-top:0px;padding:0px">
+		<div class="container-fluid" style="margin-top:0px;padding:0px;margin-left:-15px">
 
 			<!-- menu menu yang ada di samping -->
-			<div class="col-lg-1" style="background-color:#424242;width:85px;padding:0px;height: 100vh;">
+			<div class="col-lg-1 kolomkiri" style="background-color:#424242;width:85px;padding:0px;height: 100vh;" id="kolom1">
 				<div class="col-lg-12 text-center active menuitem">
 					<i class="fa fa-plus fa-lg putih" aria-hidden="true" style="margin-bottom:2px"></i>
 					<h5 class="navitem"> Booking </h5>
@@ -51,7 +78,7 @@
 			</div>
 
 			<!-- isi halamannya -->
-			<div class="col-lg-3" style="background-color:#F5F5F5;padding-left:40px;height: 100vh;">
+			<div class="col-lg-3 kolomtengah" style="background-color:#F5F5F5;padding-left:40px;height: 100vh;" id="kolom2">
 				<h1> PERIOD </h1>
 				<div class="barbar" style="margin: 15px 10px 20px 0px"></div>
 
@@ -64,13 +91,15 @@
 							<h4 class="konten"> Date  </h4>
 						</div>
 					</div>
-					<div class="row" style="padding-left:14px;padding-top:0px;padding-bottom:15px;">
-						<div id="datetimepicker" class="input-append date" style="height:20px">
-							<input data-format="dd/MM/yyyy" type="text" name="datebook" id="datebook"/>
-							<span class="add-on">
-								<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-							</span>
-						</div>
+					<div class="row" style="padding-left:14px;padding-top:0px;padding-bottom:15px;width:265px">
+						<div class="form-group">
+			                <div class='input-group date' id='datetimepicker1'>
+			                    <input type='text' class="form-control" name="datebook" id="datebook"/>
+			                    <span class="input-group-addon">
+			                        <span class="glyphicon glyphicon-calendar"></span>
+			                    </span>
+			                </div>
+			            </div>
 					</div>
 
 					<!-- From and To -->
@@ -106,7 +135,7 @@
 				</form>
 			</div>
 
-			<div class="col-lg-8" style="padding-left:40px;">
+			<div class="col-lg-8 kolomkanan" style="padding-left:40px;">
 				<h1> AVAILABILITY </h1>
 				<div class="barbar" style="margin: 15px 10px 20px 0px"></div>
 				<div class="row" style="padding-left:15px;padding-top:0px;">
@@ -215,21 +244,28 @@
 	</div>	
 	
 	
-	<script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
 </script> 
-<script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-</script>
-<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-</script>
-<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-</script>
+
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/bower_components/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/bower_components/moment/min/moment.min.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
 <script type="text/javascript">
 
 	//buat nampilin tabel book now yang di bawah
 	$(document).ready(function() {
 		$('#example').DataTable();
 	});
+
+	var table = document.getElementById("example");
+	var tinggi = table.offsetHeight;
+	var tinggifixed1 = tinggi + 350;
+	//var tinggifixed2 = tinggi + 350;
+	document.getElementById("kolom1").style.paddingBottom = tinggifixed1 + "px";
+	document.getElementById("kolom2").style.paddingBottom = tinggifixed1 + "px";	
 	
 	//buat bikin waktu akhir ga bisa > waktu mulai
 	var ubah = 0;
@@ -285,12 +321,21 @@
 		}
 	};
 
-	$('#datetimepicker').datetimepicker({
-		format: 'dd/MM/yyyy',
-		language: 'en',
-		pickTime: false
-	});
+	var dateToday = new Date();
 
+	$(function () {
+          $('#datetimepicker1').datetimepicker({
+            daysOfWeekDisabled: [0],
+			format: 'DD/MM/YYYY',
+			minDate: dateToday
+			<?php
+				if(isset($_SESSION['datebook']))
+					{
+						echo ",useCurrent: false";
+					}
+			?>
+        });
+    });	
 
 	function SelectFrom(valueToSelect)
 	{    
