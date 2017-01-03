@@ -1,3 +1,14 @@
+<!--
+*******************************************************
+TO DO LIST
+
+Echoin semua yang mau ditampilkan
+Tarik datanya dari invoice_view (ada di database tabelnya)
+Oh ya, halaman ini bukanya di tab baru ya, jangan nimpa halaman sebelumnya
+
+-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,21 +18,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
   <title>ROOMATES | INVOICE</title>
-	<!-- buat datetime piker
-	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen"
-    href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">-->
 
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <!--dari eli-->
-    <link rel="stylesheet" href="css/pembantu.css">
-
-    <style>
-    </style>
-  </head>
+  <style>
+  </style>
+</head>
 </head>
 <body style="padding:2%;" onload="window.print();">
   <table style="width: 80%;border:collapse;margin:auto;">
@@ -46,24 +50,24 @@
       <td colspan="3"> Kami, pihak Roomates, menerbitkan surat ijin peminjaman ruangan seperti yang tertulis untuk memfasilitasi kegiatan yang tercantum yakni: </td>
     </tr>
     <tr>
-      <td style=""> Hari, tanggal : </td>
-      <td colspan="2"> Selasa, 23 Desember 2016</td>
+      <td style=""> Tanggal</td>
+      <td colspan="2">: 23/12/2016</td>
     </tr>
     <tr>
-      <td> Waktu : </td>
-      <td colspan="2"> 08.00 - 10.00 WIB</td>
+      <td> Waktu </td>
+      <td colspan="2">: 08.00 - 10.00</td>
     </tr>
     <tr>
-      <td> Ruangan : </td>
-      <td colspan="2"> B501 - Lab Oracle </td>
+      <td> Ruangan </td>
+      <td colspan="2">: B501 - Lab Oracle </td>
     </tr>
     <tr>
-      <td> Atas nama : </td>
-      <td colspan="2"> Mas emas </td>
+      <td> Atas nama </td>
+      <td colspan="2">: Mas emas </td>
     </tr>
     <tr>
-      <td> Keperluan : </td>
-      <td colspan="2"> Pernikahan suci ala Rapi Amat </td>
+      <td> Keperluan </td>
+      <td colspan="2">: Pernikahan suci ala Rapi Amat </td>
     </tr>
     <tr>
       <td colspan="3"> Demikian surat peminjaman ruangan ini dibuat. Atas perhatian dan kerjasamanya, kami ucapkan terima kasih.</td>
@@ -82,9 +86,6 @@
     </tr>
   </tbody>
 </table>
-
-
-
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 29 Des 2016 pada 15.16
+-- Generation Time: 03 Jan 2017 pada 09.52
 -- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `reservation`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `invoice_view`
+--
+CREATE TABLE `invoice_view` (
+`TRH_id` int(11)
+,`date_now` varchar(10)
+,`date_book` varchar(10)
+,`username` varchar(200)
+,`class_id` varchar(20)
+,`nama_kelas` varchar(20)
+,`nama_slot` varchar(20)
+);
 
 -- --------------------------------------------------------
 
@@ -218,6 +233,15 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `password`) VALUES
 (1, 'admin1', '$2y$10$dR.lUUGHDvxRtnqnogJxV.4iBXUM.alTv4PUUmegxGb/Zx83xBGjy'),
 (2, 'admin2', '$2y$10$zRs4E6qR6YHrQ5xF7KSjR.8fawt.zWGaNzoAD85991bxXnfsdGL0W');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `invoice_view`
+--
+DROP TABLE IF EXISTS `invoice_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `invoice_view`  AS  select `trh`.`TRH_id` AS `TRH_id`,date_format(`trh`.`date_now`,'%d/%m/%Y') AS `date_now`,date_format(`trh`.`date_book`,'%d/%m/%Y') AS `date_book`,`user`.`username` AS `username`,`trh`.`class_id` AS `class_id`,`kelas`.`nama_kelas` AS `nama_kelas`,`slot`.`nama_slot` AS `nama_slot` from ((((`trh` join `user`) join `kelas`) join `trd`) join `slot`) where ((`trh`.`user_id` = `user`.`id`) and (`trh`.`class_id` = `kelas`.`id`) and (`trh`.`TRH_id` = `trd`.`TRH_id`) and (`trd`.`slot_id` = `slot`.`id`)) order by `trh`.`TRH_id` ;
 
 -- --------------------------------------------------------
 
