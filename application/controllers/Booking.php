@@ -24,14 +24,24 @@ class Booking extends CI_Controller {
 			);
 
 		//kirim $values ke booking_model fungsi cek_ruang
-		$data['booked_class'] = $this->booking_model->cek_ruang($values);
+		$coba = $this->booking_model->cek_ruang($values);
 
-		//simpen di array biar bisa dikirim lagi
-		foreach ($data['booked_class'] as $row) 
+		if($coba)
 		{
-			$class[] = $row['class_id'];
+			$data['booked_class'] = $coba;
+			
+			//simpen di array biar bisa dikirim lagi
+			foreach ($data['booked_class'] as $row) 
+			{
+				$class[] = $row['class_id'];
+			}
+		}
+		else
+		{
+			$class = false;
 		}
 
+		
 		//ambil ruang kosong
 		$data['unbooked_class'] = $this->booking_model->ruang_tersedia($class);
 

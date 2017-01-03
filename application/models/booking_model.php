@@ -81,14 +81,31 @@ Class Booking_Model extends CI_Model {
 
 		$query = $this->db->get();
 
-		//sekarang udah pake cara pinter, jadi kirimnya langsung dalam bentuk array aja
-		return $query->result_array();
+		//kasi penahan biar ga berantakan pas tampil
+		if($query)
+		{
+			//sekarang udah pake cara pinter, jadi kirimnya langsung dalam bentuk array aja
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}
+
 
 	}
 
 	public function ruang_tersedia($data)
 	{
-		$condition2 = "id NOT IN('". implode("', '", $data) . "')";
+		if($data)
+		{
+			$condition2 = "id NOT IN('". implode("', '", $data) . "')";
+		}
+		else
+		{
+			$condition2 = "id NOT IN('B000')";
+		}
+		
 
 		$this->db->select('*');
 		$this->db->from('kelas');
@@ -96,8 +113,8 @@ Class Booking_Model extends CI_Model {
 
 		$query = $this->db->get();
 
-		//sekarang udah pake cara pinter, jadi kirimnya langsung dalam bentuk array aja
 		return $query->result_array();
+
 	}
 }
 
