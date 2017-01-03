@@ -20,9 +20,11 @@ Class Booking_Model extends CI_Model {
 
 		$min = $to - $from;
 
+		$slot = []; 
+
 		if($min === 2)
 		{
-			$slot = "'".$from."to".$to."'";
+			$slot[] = $from."to".$to;
 
 			//ini udah bisa handle 8to10, 10to12, 13to15, 15to17
 
@@ -36,11 +38,11 @@ Class Booking_Model extends CI_Model {
 
 			switch ($from) {
 				case 8:
-					$slot = "'8to10','10to12'";
+					array_push($slot,"8to10","10to12");
 					break;
 				
 				default:
-					$slot = "'13to15','15to17'";
+					array_push($slot,"13to15","15to17");
 					break;
 			}
 		}
@@ -50,21 +52,21 @@ Class Booking_Model extends CI_Model {
 
 			switch ($from) {
 				case 8:
-					$slot = "'8to10','10to12','13to15'";
+					array_push($slot,"8to10","10to12","13to15");
 					break;
 				
 				default:
-					$slot = "'10to12','13to15','15to17'";
+					array_push($slot,"10to12","13to15","15to17");
 					break;
 			}
 		}
 		else if($min === 5)
 		{
-			$slot = "'10to12','13to15'";
+			array_push($slot,"10to12","13to15");
 		}
 		else
 		{
-			$slot = "'8to10','10to12','13to15','15to17'";
+			array_push($slot,"8to10","10to12","13to15","15to17");
 		}
 
 		$_SESSION['slot'] = $slot;
@@ -72,7 +74,7 @@ Class Booking_Model extends CI_Model {
 		//kay, karena udah dapet key buat slotnya, sekarang kita bisa pilih dari view
 		//ruangan mana aja yang udah ke book di hari n slot segitu
 
-		$condition = "date_book =" . "'" . $data['datebook'] . "' AND slot_id IN (".$slot.")";
+		$condition = "date_book =" . "'" . $data['datebook'] . "' AND slot_id IN ('". implode("', '", $slot) ."')";
 
 		$this->db->distinct();
 		$this->db->select('class_id');
@@ -99,7 +101,7 @@ Class Booking_Model extends CI_Model {
 	{
 		if($data)
 		{
-			$condition2 = "id NOT IN('". implode("', '", $data) . "')";
+			$condition2 = "id NOT IN('". implode("', '", $data) ."')";
 		}
 		else
 		{

@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Booking extends CI_Controller {
+class Booking extends CI_Controller 
+{
 
-	public function __construct() {
+	public function __construct() 
+	{
 		parent::__construct();
 		$this->load->model('booking_model');
 	}
@@ -14,7 +16,8 @@ class Booking extends CI_Controller {
 	}
 
 	// Buat fungsi set ke tampilannya
-	public function setContent() {
+	public function setContent() 
+	{
 
 		//mau ngirim array data ke model
 		$values = array(

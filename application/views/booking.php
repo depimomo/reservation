@@ -392,7 +392,7 @@
 
 			$n++;
 
-			$mycode = $mycode."<tr class='temp'><td>".$n."</td><td>".$row['id']."</td><td>".$row['nama_kelas']."</td><td><button type='button' class='btn btn-primary' id='".$row['id']."'><span class='glyphicon glyphicon-plus'></span> Book Now </button></td></tr>";
+			$mycode = $mycode."<tr class='temp'><td>".$n."</td><td>".$row['id']."</td><td>".$row['nama_kelas']."</td><td><a href ='".base_url()."index.php/AddNew/autoFill/".$row['id']."'><button type='button' class='btn btn-primary' id='".$row['id']."'><span class='glyphicon glyphicon-plus'></span> Book Now </button></a></td></tr>";
 		}
 
 		//echo $mycode;
