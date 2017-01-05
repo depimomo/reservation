@@ -61,13 +61,18 @@ name-name yang digunakan pada inputan:
 					<i class="fa fa-plus fa-lg putih" aria-hidden="true" style="margin-bottom:2px"></i>
 					<h5 class="navitem"> Booking </h5>
 				</div>
-
-			<a href="<?php echo base_url();?>index.php/Login/logout">
-				<div class="col-lg-12 text-center menuitem">
-					<i class="fa fa-sign-out fa-lg putih" aria-hidden="true" style="margin-bottom:4px"></i>
-					<h5 class="navitem"> Sign Out </h5>
-				</div>
-			</a>	
+				<a href="<?php echo base_url();?>index.php/ListBooking">
+					<div class="col-lg-12 text-center menuitem">
+						<i class="fa fa-list fa-lg putih" aria-hidden="true" style="margin-bottom:2px"></i>
+						<h5 class="navitem"> List </h5>
+					</div>
+				</a>
+				<a href="<?php echo base_url();?>index.php/Login/logout">
+					<div class="col-lg-12 text-center menuitem">
+						<i class="fa fa-sign-out fa-lg putih" aria-hidden="true" style="margin-bottom:4px"></i>
+						<h5 class="navitem"> Sign Out </h5>
+					</div>
+				</a>	
 		</div>
 
 		<div class="col-lg-11" style="padding-left:40px;height: 100vh;">

@@ -6,6 +6,10 @@ Echoin semua yang mau ditampilkan
 Tarik datanya dari invoice_view (ada di database tabelnya)
 Oh ya, halaman ini bukanya di tab baru ya, jangan nimpa halaman sebelumnya
 
+yang dibutuhkan:
+- Invoice (controller)
+- invoice_model
+
 -->
 
 

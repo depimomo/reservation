@@ -69,6 +69,12 @@
 					<i class="fa fa-plus fa-lg putih" aria-hidden="true" style="margin-bottom:2px"></i>
 					<h5 class="navitem"> Booking </h5>
 				</div>
+				<a href="<?php echo base_url();?>index.php/ListBooking">
+					<div class="col-lg-12 text-center menuitem">
+						<i class="fa fa-list fa-lg putih" aria-hidden="true" style="margin-bottom:2px"></i>
+						<h5 class="navitem"> List </h5>
+					</div>
+				</a>
 				<a href="<?php echo base_url();?>index.php/Login/logout">
 					<div class="col-lg-12 text-center menuitem">
 						<i class="fa fa-sign-out fa-lg putih" aria-hidden="true" style="margin-bottom:4px"></i>
@@ -94,7 +100,7 @@
 					<div class="row" style="padding-left:14px;padding-top:0px;padding-bottom:15px;width:265px">
 						<div class="form-group">
 			                <div class='input-group date' id='datetimepicker1'>
-			                    <input type='text' class="form-control" name="datebook" id="datebook"/>
+			                    <input type='text' class="form-control" name="datebook" id="datebook" readonly="true" />
 			                    <span class="input-group-addon">
 			                        <span class="glyphicon glyphicon-calendar"></span>
 			                    </span>
@@ -327,6 +333,7 @@
           $('#datetimepicker1').datetimepicker({
             daysOfWeekDisabled: [0],
 			format: 'DD/MM/YYYY',
+			ignoreReadonly: true,
 			minDate: dateToday
 			<?php
 				if(isset($_SESSION['datebook']))
