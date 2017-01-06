@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 05 Jan 2017 pada 17.43
+-- Generation Time: 06 Jan 2017 pada 04.12
 -- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -261,7 +261,7 @@ INSERT INTO `trh` (`TRH_id`, `date_now`, `date_book`, `user_id`, `class_id`, `bo
 (29, '2017-01-05', '2017-01-18', 1, 'B510', 'Contoh', 'Contoh'),
 (30, '2017-01-05', '2017-01-18', 1, 'B512', 'Contoh', 'Contoh'),
 (31, '2017-01-05', '2017-01-18', 2, 'B501', 'Contoh', 'Contoh'),
-(32, '2017-01-05', '2017-01-18', 1, 'B516', '', ''),
+(32, '2017-01-05', '2017-01-18', 1, 'B516', 'Contoh', 'Contoh'),
 (33, '2017-01-05', '2017-01-18', 2, 'B505', 'Contoh', 'Contoh');
 
 -- --------------------------------------------------------

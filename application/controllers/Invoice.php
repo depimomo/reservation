@@ -15,7 +15,4 @@ class Invoice extends CI_Controller
 		$this->load->view('booking_invoice');
 	}
 
-	// Buat fungsi set ke tampilannya
-	public function setContent() 
-	{}
 }
