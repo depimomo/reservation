@@ -1,9 +1,11 @@
 <?php
 
-Class Booking_Model extends CI_Model {
+Class Booking_Model extends CI_Model 
+{
 
 	//Tarik data sesuai waktu yang dimau
-	public function cek_ruang($data) {
+	public function cek_ruang($data) 
+	{
 
 		//simpan data yang diterima dari form ke variabel
 		$datebook = $data['datebook'];

@@ -1,11 +1,12 @@
 <?php
 
-Class Login_Model extends CI_Model {
+Class Login_Model extends CI_Model 
+{
 
 
 	// Read data using username and password
-	public function login($data) {
-
+	public function login($data) 
+	{
 		$condition = "username =" . "'" . $data['username'] . "'";
 
 		$this->db->select('*');
@@ -17,8 +18,8 @@ Class Login_Model extends CI_Model {
 
 		if ($query->num_rows() == 1) 
 		{
-			foreach ($query->result() as $row) {
-				# code...
+			foreach ($query->result() as $row) 
+			{
 				$hash = $row->password;
 				$id = $row->id;
 			}

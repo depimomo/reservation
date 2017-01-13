@@ -16,12 +16,6 @@
 	<script src="<?php echo base_url();?>assets/js/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url();?>assets/js/dataTables.bootstrap.js"></script>
 
-	<!-- buat datetime piker
-	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" media="screen"
-	href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
-	
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/js/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -58,7 +52,7 @@
 
 <body>
 
-	<?php //if(isset($_SESSION['logged_in'])) echo $_SESSION['logged_in'];?>
+	<?php if(!isset($_SESSION['logged_in'])) echo "<script>window.location='".base_url()."';</script>";?>
 
 	<div class="hidden-xs">
 		<div class="container-fluid" style="margin-top:0px;padding:0px;margin-left:-15px">

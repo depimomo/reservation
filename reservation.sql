@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 06 Jan 2017 pada 04.12
+-- Generation Time: 13 Jan 2017 pada 15.34
 -- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -33,6 +33,8 @@ CREATE TABLE `invoice_view` (
 ,`class_id` varchar(20)
 ,`nama_kelas` varchar(20)
 ,`nama_slot` varchar(20)
+,`booker_name` varchar(200)
+,`purpose` varchar(200)
 );
 
 -- --------------------------------------------------------
@@ -207,7 +209,13 @@ INSERT INTO `trd` (`TRD_id`, `TRH_id`, `slot_id`) VALUES
 (82, 32, '15to17'),
 (83, 33, '8to10'),
 (84, 33, '10to12'),
-(85, 33, '15to17');
+(85, 33, '15to17'),
+(86, 34, '10to12'),
+(87, 34, '13to15'),
+(88, 35, '10to12'),
+(89, 35, '13to15'),
+(90, 36, '10to12'),
+(91, 36, '13to15');
 
 -- --------------------------------------------------------
 
@@ -262,7 +270,10 @@ INSERT INTO `trh` (`TRH_id`, `date_now`, `date_book`, `user_id`, `class_id`, `bo
 (30, '2017-01-05', '2017-01-18', 1, 'B512', 'Contoh', 'Contoh'),
 (31, '2017-01-05', '2017-01-18', 2, 'B501', 'Contoh', 'Contoh'),
 (32, '2017-01-05', '2017-01-18', 1, 'B516', 'Contoh', 'Contoh'),
-(33, '2017-01-05', '2017-01-18', 2, 'B505', 'Contoh', 'Contoh');
+(33, '2017-01-05', '2017-01-18', 2, 'B505', 'Contoh', 'Contoh'),
+(34, '2017-01-13', '2017-01-17', 2, 'B510', 'Monica', 'Nobar 50SOG punya eli bareng listi'),
+(35, '2017-01-13', '2017-01-17', 2, 'B520', 'Rahasia', 'Iseng aja'),
+(36, '2017-01-13', '2017-01-17', 2, 'B517', 'Siapa aja', 'Rahasia dong');
 
 -- --------------------------------------------------------
 
@@ -291,7 +302,7 @@ INSERT INTO `user` (`id`, `username`, `password`) VALUES
 --
 DROP TABLE IF EXISTS `invoice_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `invoice_view`  AS  select `trh`.`TRH_id` AS `TRH_id`,date_format(`trh`.`date_now`,'%d/%m/%Y') AS `date_now`,date_format(`trh`.`date_book`,'%d/%m/%Y') AS `date_book`,`user`.`username` AS `username`,`trh`.`class_id` AS `class_id`,`kelas`.`nama_kelas` AS `nama_kelas`,`slot`.`nama_slot` AS `nama_slot` from ((((`trh` join `user`) join `kelas`) join `trd`) join `slot`) where ((`trh`.`user_id` = `user`.`id`) and (`trh`.`class_id` = `kelas`.`id`) and (`trh`.`TRH_id` = `trd`.`TRH_id`) and (`trd`.`slot_id` = `slot`.`id`)) order by `trh`.`TRH_id` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `invoice_view`  AS  select `trh`.`TRH_id` AS `TRH_id`,date_format(`trh`.`date_now`,'%d/%m/%Y') AS `date_now`,date_format(`trh`.`date_book`,'%d/%m/%Y') AS `date_book`,`user`.`username` AS `username`,`trh`.`class_id` AS `class_id`,`kelas`.`nama_kelas` AS `nama_kelas`,`slot`.`nama_slot` AS `nama_slot`,`trh`.`booker_name` AS `booker_name`,`trh`.`purpose` AS `purpose` from ((((`trh` join `user`) join `kelas`) join `trd`) join `slot`) where ((`trh`.`user_id` = `user`.`id`) and (`trh`.`class_id` = `kelas`.`id`) and (`trh`.`TRH_id` = `trd`.`TRH_id`) and (`trd`.`slot_id` = `slot`.`id`)) order by `trh`.`TRH_id` ;
 
 -- --------------------------------------------------------
 
@@ -348,12 +359,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `trd`
 --
 ALTER TABLE `trd`
-  MODIFY `TRD_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `TRD_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 --
 -- AUTO_INCREMENT for table `trh`
 --
 ALTER TABLE `trh`
-  MODIFY `TRH_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `TRH_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `user`
 --

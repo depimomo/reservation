@@ -15,4 +15,16 @@ class Invoice extends CI_Controller
 		$this->load->view('booking_invoice');
 	}
 
+	public function invoicelagi($id)
+	{
+		//terima id dari halaman invoice
+
+		//lalu kirim ke model (invoice_model) dengan cara
+		$hasil = $this->invoice_model->tampil_invoice($id);
+
+		$data['hasil'] = $hasil;
+
+		$this->load->view('booking_invoice', $data);
+	}
+
 }

@@ -1,22 +1,3 @@
-<!--
-*******************************************************
-TO DO LIST
-
-Bikin biar pas diklik tombol BOOK ROOM bakal keinput
-otomatis ke tabel TRH dan TRD sesuai data-data yang dimasukkan.
-
-name-name yang digunakan pada inputan:
-- datebook
-- selected_class_id
-- selected_class_name
-- booker_name
-- purposes
-- checkbox dengan value 8to10, 10to12, 13to15, 15to17
-- $_SESSION['logged_in'] (isinya username yang lagi login)
-- $_SESSION['id_logged_id'] (isinya id yang lagi login)
-
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,6 +34,8 @@ name-name yang digunakan pada inputan:
 </head>
 
 <body>
+
+	<?php if(!isset($_SESSION['logged_in'])) echo "<script>window.location='".base_url()."';</script>";?>
 
 	<div class="hidden-xs">
 		<div class="container-fluid" style="margin-top:0px;padding:0px">
@@ -133,7 +116,7 @@ name-name yang digunakan pada inputan:
 											break;
 									}
 									echo "<div class='checkbox'>";
-									echo "<label><input type='checkbox' checked='checked' readonly='true' onclick='return false;' name='".$row."' value='".$row."'>".$keterangan."</label>";
+									echo "<label><input type='checkbox' checked='checked' readonly='true' onclick='return false;' name='timeslot[]' value='".$row."'>".$keterangan."</label>";
 									echo "</div>";
 								}
 							}

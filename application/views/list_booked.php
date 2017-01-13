@@ -1,22 +1,3 @@
-<!--
-*******************************************************
-TO DO LIST
-
-Bikin biar pas diklik tombol SHOW LIST tabel bakal menampilkan
-data dari view invoice_view
-Lalu ketika button PRINT INVOICE diklik akan diarahkan ke halaman
-invoice, dengan mengirimkan parameter trh id nya
-
-name-name yang digunakan pada inputan:
-- date1
-- date2
-
-yang dibutuhkan:
-- listbooking_model
-- ListBooking (controller)
-
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +31,8 @@ yang dibutuhkan:
 
 	<!--dari eli-->
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/pembantu.css">
-			<style>
+
+	<style>
 	.kolomkiri, .kolomtengah, .kolomkanan {
     float: none;
     padding: 20px;
@@ -71,7 +53,7 @@ yang dibutuhkan:
 
 <body>
 
-	<?php //if(isset($_SESSION['logged_in'])) echo $_SESSION['logged_in'];?>
+	<?php if(!isset($_SESSION['logged_in'])) echo "<script>window.location='".base_url()."';</script>";?>
 
 	<div class="hidden-xs">
 		<div class="container-fluid" style="margin-top:0px;padding:0px;margin-left:-15px">
@@ -149,7 +131,7 @@ yang dibutuhkan:
 				<h1> BOOKING LIST </h1>
 				<div class="barbar" style="margin: 15px 10px 20px 0px"></div>
 
-				<div class="col-lg-10" style="padding-left:0px;padding-top:20px;padding-right:15px;">
+				<div class="col-lg-12" style="padding-left:0px;padding-top:20px;padding-right:15px;">
 					<table class="table table-striped" style="border:1px solid #E0E0E0" id="example">
 						<thead style="background-color:white">
 							<tr>
@@ -157,7 +139,8 @@ yang dibutuhkan:
 								<th>Date</th>
 								<th>Room ID</th>
 								<th>Room Name</th>
-								<th>Time Slot</th>
+								<th>Booker</th>
+								<th width="20%">Purpose</th>
 								<th>Print Invoice</th>
 							</tr>
 						</thead>
@@ -183,6 +166,7 @@ yang dibutuhkan:
 											<td></td>
 											<td>No Class Booked On This Range Time</td>
 											<td></td>
+											<td></td>
 											<td>
 												<button type='button' class='btn btn-primary' name='book'><span class='glyphicon glyphicon-print' style="padding-right: 15px;"></span>Print</button>
 											</td>
@@ -204,9 +188,10 @@ yang dibutuhkan:
 													<td><?php echo $row['date_book'];?></td>
 													<td><?php echo $row['class_id'];?></td>
 													<td><?php echo $row['nama_kelas'];?></td>
-													<td><?php echo $row['nama_slot'];?></td>
+													<td><?php echo $row['booker_name'];?></td>
+													<td><?php echo $row['purpose'];?></td>
 													<td>
-														<button type='button' class='btn btn-primary' name='book'><span class='glyphicon glyphicon-print' style="padding-right: 15px;"></span>Print</button>
+														<a type='button' class='btn btn-primary' name='book' href='<?php echo base_url()."index.php/Invoice/invoicelagi/".$row["TRH_id"];?>'><span class='glyphicon glyphicon-print' style="padding-right: 15px;"></span>Print</a>
 													</td>
 												</tr>
 											<?php
@@ -223,6 +208,7 @@ yang dibutuhkan:
 										<td></td>
 										<td></td>
 										<td>Select Date Range First</td>
+										<td></td>
 										<td></td>
 										<td>
 											<button type='button' class='btn btn-primary' name='book'><span class='glyphicon glyphicon-print' style="padding-right: 15px;"></span>Print</button>

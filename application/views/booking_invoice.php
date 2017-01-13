@@ -1,18 +1,3 @@
-<!--
-*******************************************************
-TO DO LIST
-
-Echoin semua yang mau ditampilkan
-Tarik datanya dari invoice_view (ada di database tabelnya)
-Oh ya, halaman ini bukanya di tab baru ya, jangan nimpa halaman sebelumnya
-
-yang dibutuhkan:
-- Invoice (controller)
-- invoice_model
-
--->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,11 +12,38 @@ yang dibutuhkan:
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-  <style>
+  <style type="text/css">
+    @media print
+    {    
+        .no-print, .no-print *
+        {
+            display: none !important;
+        }
+    }
   </style>
+
 </head>
-</head>
+
 <body style="padding:2%;" onload="window.print();">
+
+  <?php if(!isset($_SESSION['logged_in'])) echo "<script>window.location='".base_url()."';</script>";?>
+
+  <?php
+
+    foreach ($hasil as $row) {
+
+      $datenow = $row['date_now'];
+      $datebook = $row['date_book'];
+      $username = $row['username'];
+      $class_id = $row['class_id'];
+      $nama_kelas = $row['nama_kelas'];
+      $booker_name = $row['booker_name'];
+      $purpose = $row['purpose'];
+      $jam[] = $row['nama_slot'];
+    }
+
+
+  ?>
   <table style="width: 80%;border:collapse;margin:auto;">
     <thead>
       <tr>
@@ -45,7 +57,7 @@ yang dibutuhkan:
        <td colspan="3" style="text-align:center"> <b>Surat Peminjaman Ruangan </b> </td>
      </tr>
      <tr>
-      <td colspan="3"> Serpong, 23/12/2016 </td>
+      <td colspan="3"> Serpong, <?php echo $datenow;?> </td>
     </tr>
     <tr>
       <td colspan="3" style="height: 40px"> </td>
@@ -55,23 +67,23 @@ yang dibutuhkan:
     </tr>
     <tr>
       <td style=""> Tanggal</td>
-      <td colspan="2">: 23/12/2016</td>
+      <td colspan="2">: <?php echo $datebook;?></td>
     </tr>
     <tr>
       <td> Waktu </td>
-      <td colspan="2">: 08.00 - 10.00</td>
+      <td colspan="2">: <?php echo implode(", ", $jam);?></td>
     </tr>
     <tr>
       <td> Ruangan </td>
-      <td colspan="2">: B501 - Lab Oracle </td>
+      <td colspan="2">: <?php echo $class_id;?> - <?php echo $nama_kelas;?> </td>
     </tr>
     <tr>
       <td> Atas nama </td>
-      <td colspan="2">: Mas emas </td>
+      <td colspan="2">: <?php echo $booker_name;?> </td>
     </tr>
     <tr>
       <td> Keperluan </td>
-      <td colspan="2">: Pernikahan suci ala Rapi Amat </td>
+      <td colspan="2">: <?php echo $purpose;?> </td>
     </tr>
     <tr>
       <td colspan="3"> Demikian surat peminjaman ruangan ini dibuat. Atas perhatian dan kerjasamanya, kami ucapkan terima kasih.</td>
@@ -83,13 +95,15 @@ yang dibutuhkan:
       <td colspan="3" style="height: 60px"> </td>
     </tr>
     <tr>
-      <td colspan="3" style="text-align:right;padding-right: 9%"> Monica Kapan </td>
+      <td colspan="3" style="text-align:right;padding-right: 9%"> <?php echo $username;?> </td>
     </tr>
     <tr>
       <td colspan="3" style="text-align:right;padding-right: 9%"> Admin </td>
     </tr>
   </tbody>
 </table>
+
+<a href='<?php echo base_url()."index.php/booking";?>' class="btn btn-primary no-print pull-right" style="margin-right: 17%;margin-top: 2%;text-align:center">Back</a>
 
 </body>
 </html>

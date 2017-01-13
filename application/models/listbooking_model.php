@@ -1,6 +1,7 @@
 <?php
 
-Class ListBooking_Model extends CI_Model {
+Class ListBooking_Model extends CI_Model 
+{
 
 	public function lets_filter($data)
 	{
@@ -16,9 +17,10 @@ Class ListBooking_Model extends CI_Model {
 		//mulai kueri pencarian ke view invoice_view yang ada di database
 		$condition = "date_book >=" . "'" . $date1 . "' AND date_book <=" . "'" . $date2 . "'";
 
-		$this->db->select('*');
+		$this->db->select('TRH_id, date_book, class_id, nama_kelas, booker_name, purpose');
 		$this->db->from('invoice_view');
 		$this->db->where($condition);
+		$this->db->group_by('TRH_id');
 
 		$query = $this->db->get();
 

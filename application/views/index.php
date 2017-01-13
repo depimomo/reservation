@@ -22,18 +22,6 @@
 	<script src="assets/js/jquery.dataTables.js"></script>
 	<script src="assets/js/dataTables.bootstrap.js"></script>
 	
-	
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-	<!--buat menu
-	<link rel="stylesheet" href="jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
-	<script type="text/javascript" src="jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>-->
-	
 	<!--dari eli-->
 	<link rel="stylesheet" href="assets/css/pembantu.css">
 	<style>
@@ -48,6 +36,8 @@
 	</style>
 </head>
 <body style="background-color:transparent">
+
+	<?php if(isset($_SESSION['logged_in'])) echo "<script>window.location='".base_url()."index.php/booking';</script>";?>
 	<div class="center boxlogin">
 		<h1> LOGIN </h1>
 		<div class="barbar" style="margin: 15px 10px 20px 2px"></div>

@@ -21,25 +21,39 @@ Class AddNew_Model extends CI_Model {
 		}
 	}
 
-	//Apa yang mau dilakukan di sini?
 	public function input_reservation($data) 
 	{
-		//$data adalah array $values yang ada di controller AddNew
-		//cara ambilnya $data['datebook']
 
-		//di sini, masukin data satu-satu ke TRH dulu, setelah itu TRD
-		//yang perlu diperhatikan:
+		//ganti garis miring di date jadi strip
+		$date1 = strtr($data['datebook'], '/', '-');
 		
-		//TRH_id autoincrement, jadi tidak usah ditulis tidak apa-apa
-		//INSERT INTO `trh`(`date_now`, `date_book`, `user_id`, `class_id`, `booker_name`, `purpose`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])
+		$values = array(
+			'date_now' => date("Y-m-d"),
+			'date_book' => date('Y-m-d', strtotime($date1)),
+			'class_id' => $data['selected_class_id'],
+			'booker_name' => $data['booker_name'],
+			'purpose' => $data['purposes'],
+			'user_id' => $_SESSION['id_logged_in']
+			);
+		
+		$this->db->insert('trh', $values);
 
-		//TRD_id juga autoincrement
-		//INSERT INTO `trd`(`TRH_id`, `slot_id`) VALUES ([value-1],[value-2])
+		//ini id yang baru dimasukin
+		$myid = $this->db->insert_id();
 
-		//di tabel TRD perlu TRH_id data yang baru dimasukin, makanya perlu disimpen nomor TRH terakhir yang baru dimasukkin
-		//baca di http://stackoverflow.com/questions/14170656/get-last-inserted-auto-increment-id-in-mysql
+		foreach ($data['timeslot'] as $row) 
+		{
+			$values = array(
+			
+			'TRH_id' => $myid,
+			'slot_id' => $row
+			
+			);
 
-		//good luck :D
+			$this->db->insert('trd', $values);
+		}
+		
+		echo "<script>window.location='".base_url()."index.php/Invoice/invoicelagi/".$myid."';</script>";
 
 	}
 }
